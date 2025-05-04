@@ -2,10 +2,9 @@ import pandas as pd
 import json
 import os
 
-def preprocess_datadf = pd.read_csv(r"C:\Users\Valar\OneDrive\Desktop\smart-order-router\l1_day.csv"):
+def preprocess_data(file_path):
     # Load and sort
-    
-df = pd.read_csvdf = pd.read_csv(r"C:\Users\Valar\OneDrive\Desktop\smart-order-router\l1_day.csv")
+    df = pd.read_csv(file_path)
 
     df = df.sort_values(by=['ts_event', 'publisher_id'])
 
@@ -42,8 +41,12 @@ def allocate(snap, total_order, lambda_over, lambda_under, theta_queue):
     return allocations
 
 def backtest_main():
-    # Use a clean path to the file
-    file_path = r"C:\Users\Valar\OneDrive\Desktop\smart-order-router\l1_day.csv"
+    # Use a relative path or configurable path to the file
+    file_path = os.path.join(os.getcwd(), "l1_day.csv")
+    
+    if not os.path.exists(file_path):
+        print(f"Error: File not found at {file_path}")
+        return
     
     snapshots = preprocess_data(file_path)
     
