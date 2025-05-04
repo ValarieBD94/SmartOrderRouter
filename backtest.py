@@ -2,9 +2,9 @@ import pandas as pd
 import json
 import os
 
-def preprocess_data(file_path):
+def preprocess_data("C:\Users\Valar\OneDrive\Desktop\smart-order-router\l1_day.csv"):
     # Load and sort
-    df = pd.read_csv(file_path)
+    df = pd.read_csv("C:\Users\Valar\OneDrive\Desktop\smart-order-router\l1_day.csv")
 
     df = df.sort_values(by=['ts_event', 'publisher_id'])
 
@@ -44,11 +44,11 @@ def backtest_main():
     # Use a relative path or configurable path to the file
     file_path = os.path.join(os.getcwd(), "l1_day.csv")
     
-    if not os.path.exists(file_path):
+    if not os.path.exists("C:\Users\Valar\OneDrive\Desktop\smart-order-router\l1_day.csv"):
         print(f"Error: File not found at {file_path}")
         return
     
-    snapshots = preprocess_data(file_path)
+    snapshots = preprocess_data("C:\Users\Valar\OneDrive\Desktop\smart-order-router\l1_day.csv")
     
     lambda_over = 0.1
     lambda_under = 0.1
